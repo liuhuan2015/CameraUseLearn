@@ -48,7 +48,39 @@ SurfaceHolder的典型应用就是用于SurfaceView中。SurfaceView通过getHol
 * surfaceDestroyed(SurfaceHolder holder) : 在surface销毁之前被调用。在开发自定义相机时，可以通过重载这个函数调用camera.stopPreview()，camera.release()来实现停止相机预览及释放相机资源等操作。
 #### 三 . 自定义相机的开发过程
 定制一个自定义相机应用，通常需要完成以下步骤，其流程图如图所示：<br>
-![自定义相机的开发流程](https://github.com/liuhuan2015/CameraUseLearn/blob/master/images/Custom_Camera_flow.jpg)
+![自定义相机的开发流程](https://github.com/liuhuan2015/CameraUseLearn/blob/master/images/Custom_Camera_flow.jpg)<br>
+* 创建预览类 创建继承自SurfaceView并实现SurfaceHolder接口的拍摄预览类。此类能够显示相机的实时预览图像。
+* 建立预览布局 有了拍摄预览类，即可创建一个布局文件，将预览画面与设计好的用户界面控件融合在一起。
+* 设置拍照监听器 给用户界面控件绑定监听器，使其能响应用户操作（如按下按钮）, 开始拍照过程。
+* 拍照并保存文件 将拍摄获得的图像转换成位图文件，最终输出保存成各种常用格式的图片。
+* 释放相机资源 相机是一个共享资源，必须对其生命周期进行细心的管理。当相机使用完毕后，应用程序必须正确地将其释放，以免其它程序访问使用时，发生冲突。
+
+对应到代码编写上分为三个步骤：<br>
+
+第一步 : 在AndroidManifest.xml中添加Camera相关功能使用的权限。<br>
+
+第二步 : 编写相机操作功能类CameraOperationHelper。采用单例模式来统一管理相机资源，封装相机API的直接调用，并提供用于跟自定义相机Activity做UI交互的回调接口，<br>
+其功能函数如下，主要有创建\释放相机，连接\开始\关闭预览界面，拍照，自动对焦，切换前后摄像头，切换闪光灯模式等，具体实现可以参考官方API文档。<br>
+
+第三步 : 编写自定义相机Activity，主要是定制相机界面，实现UI交互逻辑，如按钮点击事件处理，icon资源切换，镜头尺寸切换动画等。<br>
+这里需要声明一个SurfaceView对象来实时显示相机预览画面。通过SurfaceHolder及其Callback接口来一同管理屏幕surface和相机资源的连接，相机预览图像的显示/关闭。<br>
+
+#### 四 . 开发过程中遇到的一些坑
+**1. Activity设为竖屏时，SurfaceView预览图像颠倒90度。**
+
+**屏幕方向** : 在Android系统中，屏幕的左上角是坐标系统的原点（0,0）坐标。原点向右延伸是X轴正方向，原点向下延伸是Y轴正方向。<br>
+
+**相机传感器方向**：手机相机的图像数据都是来自于摄像头硬件的图像传感器，这个传感器在被固定到手机上后有一个默认的取景方向，<br>
+如下图所示，坐标原点位于手机横放时的左上角，即与横屏应用的屏幕X方向一致。换句话说，与竖屏应用的屏幕X方向呈90度角。<br>
+
+
+
+
+
+
+
+
+
 
                   
 
