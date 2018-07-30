@@ -1,5 +1,5 @@
 Android相机开发那些坑
->学习目标文章：[Android相机开发那些坑](https://zhuanlan.zhihu.com/p/20559606)，是一个知乎专栏
+>学习目标文章：[Android相机开发那些坑](https://zhuanlan.zhihu.com/p/20559606)，是一个知乎专栏。https://www.colabug.com/2319083.html
 #### 一 . Android中开发相机应用的两种方式
 Android系统提供了两种使用手机相机资源实现拍摄功能的方法，<br>
 
