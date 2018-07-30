@@ -48,7 +48,7 @@ SurfaceHolder的典型应用就是用于SurfaceView中。SurfaceView通过getHol
 * surfaceDestroyed(SurfaceHolder holder) : 在surface销毁之前被调用。在开发自定义相机时，可以通过重载这个函数调用camera.stopPreview()，camera.release()来实现停止相机预览及释放相机资源等操作。
 #### 三 . 自定义相机的开发过程
 定制一个自定义相机应用，通常需要完成以下步骤，其流程图如图所示：<br>
-                
+   <div align=center>![自定义相机的开发流程](https://github.com/liuhuan2015/CameraUseLearn/blob/master/images/Custom_Camera_flow.jpg)</div>
                   
 
 
