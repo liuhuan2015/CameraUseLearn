@@ -53,6 +53,23 @@ Android 5.0以下的Camera和Android 5.0以上的Camera2，而且 更为严重�
 答案就是利用Fragment，将各种点击事件（点击拍照、点击切换摄像头、点击切换闪光模式等）对应的功能封装在Fragment里，<br>
 业务方在用的时候可以在Fragment之上蒙一层 UI（当然我们也需要提供默认的实现），这样就可以让功能和UI相分离，集成起来也非常的简便。<br>
 
+![自定义Camera sdk 的框架](https://github.com/liuhuan2015/CameraUseLearn/blob/master/images/Camera_Sdk_Frame.jpg)<br>
+
+* CameraActivity：相机界面，主要用来实现UI的定制，实际功能（点击事件）交由CameraFragment完成。
+* CameraFragment：向CameraActivity提供功能接口，完成CameraActivity里的点击事件，例如：拍照、录像等。
+* CameraLifecycle：处理相机随着Activity生命周期变化的情况，内部持有CameraManager，处理相机初始化和释放，预览的创建与销毁等问题。
+* CameraManager：相机的实际管理者，调用相机API来操作相机，进行拍照和录像等操作。
+* Camera/Camera2：相机API。<br>
+
+[phoenix](https://github.com/guoxiaoxing/phoenix)项目已经实现了这套方案，后面就会针对这套架构，来分析Camera/Camera2分别该如何实现。<br>
+
+#### 二 . Camera实践指南
+
+
+
+
+
+
 
 
 
