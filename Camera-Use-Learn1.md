@@ -32,7 +32,34 @@ Android 5.0以下的Camera和Android 5.0以上的Camera2，而且 更为严重�
 更多关于SurfaceView和TextureView区别的内容可以参考这篇文章[Android 5.0(Lollipop)中的SurfaceTexture，TextureView, SurfaceView和GLSurfaceView](https://blog.csdn.net/jinzhuojun/article/details/44062175)<br>
  
 **那么如何针对版本进行方案的选择呢？**<br>
-官方的开源库cameraview给出了方案：
+
+官方的开源库[cameraview](https://github.com/google/cameraview)给出了方案：<br>
+
+![相机版本方案选择](https://github.com/liuhuan2015/CameraUseLearn/blob/master/images/Camera_Version_Choose.jpg)<br>
+
+既然要两套并用，就要定义统一的接口，针对不同的场景提供不同的实现，使用的时候也是根据不同的场景来创建不同的实例。<br>
+
+这个接口一般需要定义以下功能：<br>
+* 打开相机
+* 关闭相机
+* 开启预览
+* 关闭预览
+* 拍照
+* 开始录制视频
+* 结束录制视频
+
+定义好了接口，我们就有了思路，针对相机的具体特性实现相应的方案，那么另一个问题就出来了，相机在日常开发中一般作为一个SDK的形式存在供各个业务方调用，那么如何设计 出一个功能与UI相分离，高度可定制的相机SDK呢？<br>
+
+答案就是利用Fragment，将各种点击事件（点击拍照、点击切换摄像头、点击切换闪光模式等）对应的功能封装在Fragment里，<br>
+业务方在用的时候可以在Fragment之上蒙一层 UI（当然我们也需要提供默认的实现），这样就可以让功能和UI相分离，集成起来也非常的简便。<br>
+
+
+
+
+
+
+
+
 
  
  
